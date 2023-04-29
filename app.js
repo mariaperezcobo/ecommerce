@@ -1,12 +1,14 @@
 let entrada = Number(prompt ("Ingrese el número del articulo a comprar. \n 1. Calza Lisboa \n 2. Calza Londres \n 3. Calza Madrid \n 4. No quiero comprar ningun producto"));
 
 
-let precioLisboa= 15000;
+let precioLisboa= 18000;
 let precioLondres= 12000;
-let precioMadrid= 10000;
+let precioMadrid= 14000;
 let carrito=0;
 let nuevoPrecio;
+let nuevoPrecioDos;
 let cuotas;
+let totalCompra=0;
 
 if(entrada == 1){
     alert ("Ha seleccionado la calza Lisboa. Precio "+ `${precioLisboa}`);
@@ -19,7 +21,32 @@ if(entrada == 1){
     nuevoPrecio = `${precioMadrid}`;
 } else if (entrada >= 4 || entrada == "" ) {
     alert ("No seleccionó ningun producto");
+    nuevoPrecio=0;
 };
+
+let entradaDos = Number(prompt ("¿quiere agregar otro articulo al carrito? Ingrese el número del articulo a comprar. \n 1. Calza Lisboa \n 2. Calza Londres \n 3. Calza Madrid \n 4. No quiero comprar ningun producto"));
+
+if(entradaDos == 1){
+    alert ("Ha seleccionado la calza Lisboa. Precio "+ `${precioLisboa}`);
+    nuevoPrecioDos = `${precioLisboa}`;
+} else if (entradaDos == 2) {
+        alert ("Ha seleccionado la calza Londres. Precio "+ `${precioLondres}`);
+        nuevoPrecioDos = `${precioLondres}`;
+} else if (entradaDos == 3) {
+    alert ("Ha seleccionado la calza Madrid. Precio "+ `${precioMadrid}`);
+    nuevoPrecioDos = `${precioMadrid}`;
+} else if (entradaDos >= 4 || entradaDos == "" ) {
+    alert ("No seleccionó ningun producto");
+    nuevoPrecioDos=0;
+};
+
+function suma (a,b){
+    totalCompra = a + b;
+};
+
+suma(parseInt(nuevoPrecio),parseInt(nuevoPrecioDos));
+
+alert ("El total de la compra es " + totalCompra);
 
 if(entrada <4 && entrada >=1){
     cuotas = Number(prompt ("Ingrese el número de cuotas. \n 1 \n 2 \n 3"));
@@ -28,22 +55,25 @@ if(entrada <4 && entrada >=1){
 };
 
 
-if (cuotas <=3){
+if (cuotas <=3 && cuotas >=1){
         alert ("La cantidad de cuotas seleccionadas es: " + cuotas);
-} else if (cuotas >3) { 
+} else { 
     cuotas =1;
     alert ("La cantidad de cuotas seleccionadas es: " + cuotas);
 }
 
-function calculoCuota (nuevoPrecio, cuotas) {
-    return (nuevoPrecio / cuotas).toFixed(2) ;
+function calculoCuota (totalCompra, cuotas) {
+    return (totalCompra / cuotas).toFixed(2) ;
 }
-let resultado = calculoCuota (nuevoPrecio, cuotas) ;
+let resultado = calculoCuota (totalCompra, cuotas) ;
 if(entrada <4 && entrada >=1){
-    alert(`El valor del carrito es: ${nuevoPrecio},  la compra se realiza en ${cuotas} cuotas, y cada cuota tiene un valor de ${resultado}`);
-} else if (entrada >= 4 || entrada == "") {
+    alert(`El valor del carrito es: ${totalCompra},  la compra se realiza en ${cuotas} cuotas, y cada cuota tiene un valor de ${resultado}`);
+}  else if (entrada >= 4 || entrada == "") {
     alert ("No seleccionó ningun producto");
 };
+
+
+
 
 
 //OBJETOS
@@ -62,6 +92,7 @@ const producto5 = new Producto ("Top Miami", 10000);
 console.log(producto1);
 console.log(producto2);
 console.log(producto3);
+
 
 
 
@@ -85,3 +116,7 @@ const productos2 = ["Remera Barcelona"];
 const productosFinal = productos.concat(productos2);
 console.log(productos);
 console.log(productosFinal);
+
+console.log(productos.indexOf("Top Miami"));
+
+
