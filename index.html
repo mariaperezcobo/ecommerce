@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--link:css-->
+    <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="./bootstrap.css">
     <title>JS E-Commerce</title>
 </head>
@@ -12,9 +14,10 @@
 <body>
     <!-- NavBar -->
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="color--barranav navbar navbar-expand-lg navbar-light ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">JS E-Commerce</a>
+            <a class="navbar-brand" href="#"></a>
+            <img class="logo" src="./imagenes/logo2.png" alt=""logo">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
                 aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,15 +26,18 @@
     </nav>
 
     <!-- Cards -->
-
-    <div class="container">
-        <h2>Catálogo de Productos</h2>
+<div class="titulo">
+    <div class="container2">
+        <h2 class="titulo1">Catálogo de Productos</h2>
     </div>
+</div>
+    
 
     <div class="container-cards">
 
         <div class="card border-dark mb-3" style="max-width: 20rem;">
-            <div class="card-header">Producto A</div>
+            <div class="card-header">Calzas Lisboa</div>
+            <img src="./imagenes/calzas2.png" alt="calzas estampadas">
             <div class="card-body">
                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ipsam rerum eveniet
                     adipisci atque explicabo obcaecati nulla incidunt enim veniam..</p>
@@ -39,7 +45,17 @@
             </div>
         </div>
         <div class="card border-dark mb-3" style="max-width: 20rem;">
-            <div class="card-header">Producto B</div>
+            <div class="card-header">Calzas Londres</div>
+            <img src="./imagenes/mujer estir.png" alt="mujer estirando con calzas grises">
+            <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ipsam rerum eveniet
+                    adipisci atque explicabo obcaecati nulla incidunt enim veniam..</p>
+                <button type="button" class="btn btn-dark">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="card border-dark mb-3" style="max-width: 20rem;">
+            <div class="card-header">Calzas Madrid</div>
+            <img class="img" src="./imagenes/zapas2.png" alt="calzas estampadas blancas y azules">
             <div class="card-body">
                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ipsam rerum eveniet
                     adipisci atque explicabo obcaecati nulla incidunt enim veniam..</p>
@@ -48,6 +64,25 @@
         </div>
         <div class="card border-dark mb-3" style="max-width: 20rem;">
             <div class="card-header">Producto C</div>
+            <img class="img" src="./imagenes/remera3.png" alt="remera banca y gris">
+            <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ipsam rerum eveniet
+                    adipisci atque explicabo obcaecati nulla incidunt enim veniam..</p>
+                <button type="button" class="btn btn-dark">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="card border-dark mb-3" style="max-width: 20rem;">
+            <div class="card-header">Producto C</div>
+            <img class="img" src="./imagenes/calzas3.png" alt="mujer sentada en la playa, calzas estampadas">
+            <div class="card-body">
+                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ipsam rerum eveniet
+                    adipisci atque explicabo obcaecati nulla incidunt enim veniam..</p>
+                <button type="button" class="btn btn-dark">Agregar al carrito</button>
+            </div>
+        </div>
+        <div class="card border-dark mb-3" style="max-width: 20rem;">
+            <div class="card-header">Producto C</div>
+            <img class="img" src="./imagenes/ropa960.png" alt="dos chicas, una calza negra y otra blanca">
             <div class="card-body">
                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ipsam rerum eveniet
                     adipisci atque explicabo obcaecati nulla incidunt enim veniam..</p>
@@ -75,9 +110,9 @@
     <hr>
 
     <!-- Form -->
-
+<div class="colorFormulario">
     <form class="container">
-        <h3>Formulario de Contacto</h3>
+        <h3 class="margen">Formulario de Contacto</h3>
         <label>Nombre y Apellido</label>
         <input type="text" class="form-control" id="inputName" placeholder="Ingrese su Nombre y Apellido">
         <label>Correo Electrónico</label>
@@ -87,6 +122,8 @@
             <button type="submit" class="btn btn-secondary">Comprar y Enviar Información</button>
         </div>
     </form>
+</div>
+  
 <script src="./app.js"></script>
 </body>
 

@@ -126,3 +126,23 @@ if(entrada <4 && entrada >=1){
 }  else if (entrada >= 4 || entrada == "") {
     alert ("No seleccionó ningun producto");
 };
+
+//console.log(document);
+//console.log(document.body);
+
+const subtitulo = document.querySelector("h2").textContent = "Productos";
+console.log(subtitulo);
+
+const parrafos = document.querySelectorAll("p");
+console.log(parrafos);
+
+parrafos[0].innerText= "$15.000";
+parrafos[1].innerText= "$12.000";
+parrafos[2].innerText= "$10.000";
+
+const tituloProducto = document.querySelectorAll(".card-header");
+console.log(tituloProducto);
+
+console.log(document);
+//const subtitulo = document.querySelectorAll("h2");
+//console.log(subtitulo.innerText);
