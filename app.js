@@ -116,7 +116,7 @@ console.log(productos);
 
 //let entrada = Number(prompt ("Ingrese el número del articulo a comprar. \n 1. Calza Lisboa \n 2. Calza Londres \n 3. Calza Madrid \n 4. No quiero comprar ningun producto"));
 
-let resultado3= productos.filter((producto) => producto.nombre ==="Calzas Lisboa");
+/*let resultado3= productos.filter((producto) => producto.nombre ==="Calzas Lisboa");
 console.log(resultado3);
 
 let compra= productos.filter((producto) => producto.nombre ==="Calzas Madrid");
@@ -128,11 +128,12 @@ console.log(totalCarrito2);
 const carrito=[];
 let totalcompra;
 
-
+*/
 //carrito.push(compra);
 //carrito.push(resultado3);
-console.log(carrito);
+/*console.log(carrito);
 
+//concatenar array
 const carritoFinal2 = compra.concat(resultado3);
 console.log(productos);
 console.log(carritoFinal2);
@@ -168,14 +169,14 @@ console.log(resultado3);*/
 
 
 
-let resultado4 = productos.reduce ((acumulado, producto) => {
+/*let resultado4 = productos.reduce ((acumulado, producto) => {
     return acumulado + producto.precio},0);
 console.log(resultado4);
 
 let precioProductoUno = productos.reduce ((acumulado, producto) => {
     return acumulado + producto.precio},0);
 console.log(precioProductoUno);
-
+*/
 
 
 
@@ -196,57 +197,112 @@ let nuevoPrecio;
 let nuevoPrecioDos;
 let cuotas;
 let totalCompra=0;
-const carrito2 =[];
+const carritoFinal =[];
 let primerCarrito;
-let precioPrimerCarrito;
-let precioCarritoLisboa;
-let precioCarritoMadrid;
-let precioCarritoLondres;
-let carritoLisboa;
-let carritoMadrid;
-let carritoLondres;
+let carritoUno=[];
+let carritoDos=[];
+let precioCarritoUno;
+let precioCarritoDos;
+let carritoTotal;
+let precioCarritoTotal;
+let entradaDos;
+let segundoCarrito;
+
+
 
 if(entrada == 1){
-    carritoLisboa = productos.filter((producto) => producto.nombre ==="Calzas Lisboa");
-    console.log(carritoLisboa);
-    carrito.push(carritoLisboa);
-    precioCarritoLisboa = carritoLisboa.reduce ((acumulado, producto) => {
+    carritoUno = productos.filter((producto) => producto.nombre ==="Calzas Lisboa");
+    console.log(carritoUno);
+    precioCarritoUno = carritoUno.reduce ((acumulado, producto) => {
     return acumulado + producto.precio},0);
-    console.log(precioCarritoLisboa);
-    alert ("Ha seleccionado la calza Lisboa. Precio "+ `${precioCarritoLisboa}`);
+    console.log(precioCarritoUno);
+    alert ("Ha seleccionado la calza Lisboa. Precio "+ `${precioCarritoUno}`);
 } else if (entrada == 2) {
-    carritoLondres = productos.filter((producto) => producto.nombre ==="Calzas Londres");
-    console.log(carritoLondres);
-    carrito.push(carritoLondres);
-    precioCarritoLondres = carritoLondres.reduce ((acumulado, producto) => {
+    carritoUno = productos.filter((producto) => producto.nombre ==="Calzas Londres");
+    console.log(carritoUno);
+    precioCarritoUno = carritoUno.reduce ((acumulado, producto) => {
     return acumulado + producto.precio},0);
-    console.log(precioCarritoLondres);
-    alert ("Ha seleccionado la calza Londres. Precio "+ `${precioCarritoLondres}`);
+    console.log(precioCarritoUno);
+    alert ("Ha seleccionado la calza Londres. Precio "+ `${precioCarritoUno}`);
 } else if (entrada == 3) {
-    carritoMadrid = productos.filter((producto) => producto.nombre ==="Calzas Madrid");
-    console.log(carritoMadrid);
-    carrito.push(carritoMadrid);
-    precioCarritoMadrid = carritoMadrid.reduce ((acumulado, producto) => {
+    carritoUno = productos.filter((producto) => producto.nombre ==="Calzas Madrid");
+    console.log(carritoUno);
+    precioCarritoUno = carritoUno.reduce ((acumulado, producto) => {
     return acumulado + producto.precio},0);
-    console.log(precioCarritoMadrid);
-    alert ("Ha seleccionado la calza Madrid. Precio "+ `${precioCarritoMadrid}`);
+    console.log(precioCarritoUno);
+    alert ("Ha seleccionado la calza Madrid. Precio "+ `${precioCarritoUno}`);
 } else if (entrada >= 4 || entrada == "" ) {
     alert ("No seleccionó ningun producto");
     nuevoPrecio=0;
 };
 
-/*let entradaDos = Number(prompt ("¿quiere agregar otro articulo al carrito? Ingrese el número del articulo a comprar. \n 1. Calza Lisboa \n 2. Calza Londres \n 3. Calza Madrid \n 4. No quiero comprar ningun producto"));
 
-if(entradaDos == 1){
-    alert ("Ha seleccionado la calza Lisboa. Precio "+ `${precioLisboa}`);
-    nuevoPrecioDos = `${precioLisboa}`;
+if(entrada == parseInt(1) || entrada == parseInt(2) || entrada == parseInt(3)){
+    entradaDos = Number(prompt ("¿quiere agregar otro articulo al carrito? Ingrese el número del articulo a comprar. \n 1. Calza Lisboa \n 2. Calza Londres \n 3. Calza Madrid \n 4. No quiero comprar ningun producto"));
+} else {
+    alert ("No seleccionó ningun producto");
+    };
+
+if (entradaDos == 1){
+    carritoDos = productos.filter((producto) => producto.nombre ==="Calzas Lisboa");
+    console.log(carritoDos);
+    precioCarritoDos = carritoDos.reduce ((acumulado, producto) => {
+    return acumulado + producto.precio},0);
+    console.log(precioCarritoDos);
+    alert ("Ha seleccionado la calza Lisboa. Precio "+ `${precioCarritoDos}`);
 } else if (entradaDos == 2) {
-        alert ("Ha seleccionado la calza Londres. Precio "+ `${precioLondres}`);
-        nuevoPrecioDos = `${precioLondres}`;
+    carritoDos = productos.filter((producto) => producto.nombre ==="Calzas Londres");
+    console.log(carritoDos);
+    precioCarritoDos = carritoDos.reduce ((acumulado, producto) => {
+    return acumulado + producto.precio},0);
+    console.log(precioCarritoDos);
+    alert ("Ha seleccionado la calza Londres. Precio "+ `${precioCarritoDos}`);
 } else if (entradaDos == 3) {
-    alert ("Ha seleccionado la calza Madrid. Precio "+ `${precioMadrid}`);
-    nuevoPrecioDos = `${precioMadrid}`;
+    carritoDos = productos.filter((producto) => producto.nombre ==="Calzas Madrid");
+    console.log(carritoDos);
+    precioCarritoDos = carritoDos.reduce ((acumulado, producto) => {
+    return acumulado + producto.precio},0);
+    console.log(precioCarritoDos);
+    alert ("Ha seleccionado la calza Madrid. Precio "+ `${precioCarritoDos}`);
 } else if (entradaDos >= 4 || entradaDos == "" ) {
     alert ("No seleccionó ningun producto");
-    nuevoPrecioDos=0;
-};*/
+    precioCarritoDos == 0;
+};
+console.log(carritoUno);
+console.log(precioCarritoUno);
+console.log(carritoDos);
+console.log(precioCarritoDos),
+
+
+
+carritoTotal = carritoUno.concat(carritoDos);
+precioCarritoTotal = carritoTotal.reduce ((acumulado, producto) => {
+    return acumulado + producto.precio},0);
+console.log(precioCarritoTotal);
+console.log(carritoTotal);
+
+alert ("El total de la compra es " + precioCarritoTotal);
+
+if(entrada <4 && entrada >=1){
+    cuotas = Number(prompt ("Ingrese el número de cuotas. \n 1 \n 2 \n 3"));
+}else if (entrada >= 4 || entrada == "") {
+    alert ("No seleccionó ningun producto");
+};
+
+
+if (cuotas <=3 && cuotas >=1){
+        alert ("La cantidad de cuotas seleccionadas es: " + cuotas);
+} else { 
+    cuotas =1;
+    alert ("La cantidad de cuotas seleccionadas es: " + cuotas);
+}
+
+function calculoCuota (precioCarritoTotal, cuotas) {
+    return (precioCarritoTotal / cuotas).toFixed(2) ;
+}
+let resultado = calculoCuota (precioCarritoTotal, cuotas) ;
+if(entrada <4 && entrada >=1){
+    alert(`El valor del carrito es $: ${precioCarritoTotal},  la compra se realiza en ${cuotas} cuotas, y cada cuota tiene un valor de $ ${resultado}`);
+}  else if (entrada >= 4 || entrada == "") {
+    alert ("No seleccionó ningun producto");
+};
