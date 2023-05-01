@@ -1,18 +1,18 @@
 
 
 const productos = [
-    {nombre:"Calzas Lisboa", precio: 15000},
-    {nombre: "Calzas Londres", precio: 12000}
+    {nombre:"Calzas Lisboa", precio: 15000, imagen:"./imagenes/calzas2.png", alt:"calzas estampadas"},
+    {nombre: "Calzas Londres", precio: 12000, imagen:"./imagenes/mujer estir.png", alt:"mujer estirando con calzas grises"},
+    {nombre:"Calzas Madrid", precio: 10000, imagen:"./imagenes/zapas2.png", alt:"calzas estampadas blancas y azules"},
+    {nombre:"Top Miami", precio: 8000, imagen:"./imagenes/remera3.png", alt:"remera banca y gris"},
+    {nombre:"Calzas Bariloche", precio:1000, imagen:"./imagenes/calzas3.png", alt:"mujer sentada en la playa, calzas estampadas"},
+    {nombre:"Calzas Barcelona", precio:10000, imagen:"./imagenes/ropa960.png", alt:"dos chicas, una calza negra y otra blanca"},
 ] 
 //console.log(productos.join(","));
 //para recorrer el array
 //for (let i=0; i< productos.length; i++){
  //   console.log(productos[i]);
 
-
-//para agregar productos al array
-productos.push(
-    {nombre:"Calzas Madrid", precio:10000}); 
 
 
 let cuotas;
@@ -31,7 +31,7 @@ while (comprar =="si"){
 };
 
 if (comprar == "no"){
-    alert ("No se agregan articulos al carrito");
+    alert ("No se agregan mas articulos al carrito");
     };
 
 function agregarProducto() {
@@ -41,23 +41,29 @@ function agregarProducto() {
             case 1:
                 nombre= "Calzas Lisboa";
                 precio= 15000;
+                imagen="";
+                    alt="";
                 break;
             case 2:
                     nombre= "Calzas Londres";
                     precio= 12000;
+                    imagen="";
+                    alt="";
                     break;
             case 3:
                     nombre= "Calzas Madrid";
                     precio= 10000;
+                    imagen="";
+                    alt="";
                     break;
             case 4:
                 alert ("No seleccionó ningun producto");
                 break;        
         } 
-    carrito.push({nombre,precio});
-    } else {
+    carrito.push({nombre,precio, imagen, alt});
+    } /*else {
         alert ("No seleccionó ningun producto");
-    };
+    };*/
 };
 
 
@@ -75,16 +81,16 @@ carrito.forEach ((carritoTotal) => {
 
 if(entrada <4 && entrada >=1){
     cuotas = Number(prompt ("Ingrese el número de cuotas. \n 1 \n 2 \n 3"));
-}else if (entrada >= 4 || entrada == "") {
+}/*else if (entrada >= 4 || entrada == "") {
     alert ("No seleccionó ningun producto");
-};
+};*/
 
 
 if (cuotas <=3 && cuotas >=1){
         alert ("La cantidad de cuotas seleccionadas es: " + cuotas);
 } else { 
     cuotas =1;
-    alert ("Se va a realizar en 1 pago");
+    
 }
 
 function calculoCuota (precioCarritoTotal, cuotas) {
@@ -93,8 +99,33 @@ function calculoCuota (precioCarritoTotal, cuotas) {
 let resultado = calculoCuota (precioCarritoTotal, cuotas) ;
 if(entrada <4 && entrada >=1){
     alert(`El valor del carrito es $: ${precioCarritoTotal},  la compra se realiza en ${cuotas} cuotas, y cada cuota tiene un valor de $ ${resultado}`);
-}  else if (entrada >= 4 || entrada == "") {
-    alert ("No seleccionó ningun producto");
+} ;
+
+const contenedorProductos = document.querySelector("#contenedor-productos");
+
+function cargarProductos (producto){
+    productos.forEach(producto =>{
+        const div = document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML= `
+        <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">${producto.nombre}</div>
+        <img src="${producto.imagen}" alt="${producto.alt}">
+        <div class="card-body">
+            <p class="card-text">$ ${producto.precio}</p>
+            <button type="button" class="btn btn-dark">Agregar al carrito</button>
+        </div>
+        `
+        contenedorProductos.append(div);
+    })
 };
+cargarProductos();
 
-
+/*<div class="card border-dark mb-3" style="max-width: 20rem;">
+<div class="card-header">Calzas Lisboa</div>
+<img src="./imagenes/calzas2.png" alt="calzas estampadas">
+<div class="card-body">
+    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ipsam rerum eveniet
+        adipisci atque explicabo obcaecati nulla incidunt enim veniam..</p>
+    <button type="button" class="btn btn-dark">Agregar al carrito</button>
+</div>*/
