@@ -25,13 +25,13 @@ let comprar ="si";
 
 
 while (comprar =="si"){
-        entrada = Number(prompt ("Ingrese el número del articulo a comprar. \n \n 1. Calza Lisboa \n 2. Calza Londres \n 3. Calza Madrid \n 4. No quiero comprar ningun producto"));
+        entrada = Number(prompt ("Ingrese el número del producto a comprar. \n \n 1. Calza Lisboa. Precio: $15.000 \n 2. Calza Londres. Precio: $12.000\n 3. Calza Madrid. Precio: $10.000 \n 4. No quiero comprar ningun producto"));
         agregarProducto();
-        comprar = prompt ("¿Quiere comprar otro articulo?. \n 1. si \n 2. no").toLowerCase();   
+        comprar = prompt ("¿Quiere comprar agregar otro producto a su carrito?. \n 1. si \n 2. no").toLowerCase();   
 };
 
 if (comprar == "no"){
-    alert ("No se agregan mas articulos al carrito");
+    alert ("No se agregan mas productos al carrito");
     };
 
 function agregarProducto() {
@@ -75,8 +75,9 @@ console.log(carrito);
 alert ("El total de la compra es " + precioCarritoTotal);
 
 carrito.forEach ((carritoTotal) => {
-    console.log(`Producto: ${carritoTotal.nombre}, precio $ ${carritoTotal.precio}`);
+    alert(`Producto: ${carritoTotal.nombre}, precio $ ${carritoTotal.precio}`);
 }   );
+
 
 
 if(entrada <4 && entrada >=1){
