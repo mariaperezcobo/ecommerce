@@ -66,19 +66,43 @@ function agregarProducto() {
     };*/
 };
 
+function calcularCarrito(){
+    precioCarritoTotal = carrito.reduce ((acumulado, producto) => {
+        return acumulado + producto.precio},0);
+}
+calcularCarrito();
+
+console.log(precioCarritoTotal);
+console.log(carrito);
+alert ("El total de la compra es " + precioCarritoTotal);
+
+let preguntaEliminar;
+
+if(precioCarritoTotal>0){
+    preguntaEliminar = prompt ("¿Quiere eliminar el ultimo producto que compró? \n 1. si \n 2. no").toLowerCase(); 
+    eliminar();
+    calcularCarrito();
+}
+function eliminar (){
+    if (preguntaEliminar =="si"){
+        carrito.pop({nombre,precio,imagen,alt})
+    }
+};
 
 precioCarritoTotal = carrito.reduce ((acumulado, producto) => {
     return acumulado + producto.precio},0);
 console.log(precioCarritoTotal);
 console.log(carrito);
 
-alert ("El total de la compra es " + precioCarritoTotal);
+if(preguntaEliminar =="si"){
+    alert ("El total de la compra eliminando el último producto es " + precioCarritoTotal);
+};
 
 carrito.forEach ((carritoTotal) => {
     alert(`Producto: ${carritoTotal.nombre}, precio $ ${carritoTotal.precio}`);
 }   );
 
-
+ 
 
 if(entrada <4 && entrada >=1){
     cuotas = Number(prompt ("Ingrese el número de cuotas. \n 1 \n 2 \n 3"));
