@@ -1,5 +1,5 @@
 
-
+//ARRAY DE PRODUCTOS
 const productos = [
     {nombre:"Calzas Lisboa", precio: 15000, imagen:"./imagenes/calzas2.png", alt:"calzas estampadas"},
     {nombre: "Calzas Londres", precio: 12000, imagen:"./imagenes/mujer estir.png", alt:"mujer estirando con calzas grises"},
@@ -14,7 +14,7 @@ const productos = [
  //   console.log(productos[i]);
 
 
-
+//VARIABLES / ARRAY
 let cuotas;
 let carritoTotal=[];
 let precioCarritoTotal;
@@ -22,8 +22,9 @@ let entradaDos;
 let entrada;
 let carrito=[];
 let comprar ="si";
+let preguntaEliminar;
 
-
+//CONDICIONAL PARA QUE SIGA COMPRANDO LOS PRODUCTOS QUE QUIERA
 while (comprar =="si"){
         entrada = Number(prompt ("Ingrese el número del producto a comprar. \n \n 1. Calza Lisboa. Precio: $15.000 \n 2. Calza Londres. Precio: $12.000\n 3. Calza Madrid. Precio: $10.000 \n 4. No quiero comprar ningun producto"));
         agregarProducto();
@@ -34,6 +35,7 @@ if (comprar == "no"){
     alert ("No se agregan mas productos al carrito");
     };
 
+//FUNCION PARA AGREGAR PRODUCTOS AL CARRITO DE COMPRAS
 function agregarProducto() {
     
     if(entrada == 1 || entrada == 2 || entrada == 3) {
@@ -66,6 +68,7 @@ function agregarProducto() {
     };*/
 };
 
+//PARA CALCULAR EL VALOR TOTAL DEL CARRITO DE COMPRAS
 function calcularCarrito(){
     precioCarritoTotal = carrito.reduce ((acumulado, producto) => {
         return acumulado + producto.precio},0);
@@ -74,10 +77,12 @@ calcularCarrito();
 
 console.log(precioCarritoTotal);
 console.log(carrito);
+
+//MOSTRAMOS AL CLIENTE EL VALOR DEL CARRITO
 alert ("El total de la compra es " + precioCarritoTotal);
 
-let preguntaEliminar;
 
+//CONDICIONAL POR SI QUIERE ELIMINAR EL ULTIMO PRODUCTO
 if(precioCarritoTotal>0){
     preguntaEliminar = prompt ("¿Quiere eliminar el ultimo producto que compró? \n 1. si \n 2. no").toLowerCase(); 
     eliminar();
@@ -89,6 +94,7 @@ function eliminar (){
     }
 };
 
+//CALCULA EL NUEVO VALOR DEL CARRITO, EN CASO QUE HAYA ELIMINADO EL ULTIMO ARTICULO
 precioCarritoTotal = carrito.reduce ((acumulado, producto) => {
     return acumulado + producto.precio},0);
 console.log(precioCarritoTotal);
@@ -98,18 +104,17 @@ if(preguntaEliminar =="si"){
     alert ("El total de la compra eliminando el último producto es " + precioCarritoTotal);
 };
 
+//MUESTRA EL DETALLE DEL CARRITO
 carrito.forEach ((carritoTotal) => {
     alert(`Producto: ${carritoTotal.nombre}, precio $ ${carritoTotal.precio}`);
 }   );
 
- 
-
+//PREGUNTA AL CLIENTE LAS CANTIDAD DE CUOTAS QUE DESEA PAGAR
 if(entrada <4 && entrada >=1){
     cuotas = Number(prompt ("Ingrese el número de cuotas. \n 1 \n 2 \n 3"));
 }/*else if (entrada >= 4 || entrada == "") {
     alert ("No seleccionó ningun producto");
 };*/
-
 
 if (cuotas <=3 && cuotas >=1){
         alert ("La cantidad de cuotas seleccionadas es: " + cuotas);
@@ -118,14 +123,18 @@ if (cuotas <=3 && cuotas >=1){
     
 }
 
+//CALCULA EL VALOR DE LA CUOTA, DEPENDIENDO DE LA CANTIDAD DE UOTAS SELECCIONADA
 function calculoCuota (precioCarritoTotal, cuotas) {
     return (precioCarritoTotal / cuotas).toFixed(2) ;
 }
 let resultado = calculoCuota (precioCarritoTotal, cuotas) ;
+
+// MUESTRA EL RESUMEN DE SU COMPRA: PRECIO TOTAL, CANT DE CUOTAS Y VALOR DE CADA CUOTA
 if(entrada <4 && entrada >=1){
     alert(`El valor del carrito es $: ${precioCarritoTotal},  la compra se realiza en ${cuotas} cuotas, y cada cuota tiene un valor de $ ${resultado}`);
 } ;
 
+//PARA CARGAR LOS PRODUCTOS AL HTML
 const contenedorProductos = document.querySelector("#contenedor-productos");
 
 function cargarProductos (producto){
@@ -146,11 +155,3 @@ function cargarProductos (producto){
 };
 cargarProductos();
 
-/*<div class="card border-dark mb-3" style="max-width: 20rem;">
-<div class="card-header">Calzas Lisboa</div>
-<img src="./imagenes/calzas2.png" alt="calzas estampadas">
-<div class="card-body">
-    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, ipsam rerum eveniet
-        adipisci atque explicabo obcaecati nulla incidunt enim veniam..</p>
-    <button type="button" class="btn btn-dark">Agregar al carrito</button>
-</div>*/
