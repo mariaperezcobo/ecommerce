@@ -110,7 +110,7 @@ carrito.forEach ((carritoTotal) => {
 }   );
 
 //PREGUNTA AL CLIENTE LAS CANTIDAD DE CUOTAS QUE DESEA PAGAR
-if(entrada <4 && entrada >=1){
+if(precioCarritoTotal>0){
     cuotas = Number(prompt ("Ingrese el número de cuotas. \n 1 \n 2 \n 3"));
 }/*else if (entrada >= 4 || entrada == "") {
     alert ("No seleccionó ningun producto");
@@ -123,14 +123,14 @@ if (cuotas <=3 && cuotas >=1){
     
 }
 
-//CALCULA EL VALOR DE LA CUOTA, DEPENDIENDO DE LA CANTIDAD DE UOTAS SELECCIONADA
+//CALCULA EL VALOR DE LA CUOTA, DEPENDIENDO DE LA CANTIDAD DE CUOTAS SELECCIONADA
 function calculoCuota (precioCarritoTotal, cuotas) {
     return (precioCarritoTotal / cuotas).toFixed(2) ;
 }
 let resultado = calculoCuota (precioCarritoTotal, cuotas) ;
 
 // MUESTRA EL RESUMEN DE SU COMPRA: PRECIO TOTAL, CANT DE CUOTAS Y VALOR DE CADA CUOTA
-if(entrada <4 && entrada >=1){
+if(precioCarritoTotal>0){
     alert(`El valor del carrito es $: ${precioCarritoTotal},  la compra se realiza en ${cuotas} cuotas, y cada cuota tiene un valor de $ ${resultado}`);
 } ;
 
