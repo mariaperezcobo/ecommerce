@@ -79,7 +79,7 @@ console.log(precioCarritoTotal);
 console.log(carrito);
 
 //MOSTRAMOS AL CLIENTE EL VALOR DEL CARRITO
-alert ("El total de la compra es " + precioCarritoTotal);
+alert ("El total de la compra es $" + precioCarritoTotal);
 
 
 //CONDICIONAL POR SI QUIERE ELIMINAR EL ULTIMO PRODUCTO
@@ -101,13 +101,14 @@ console.log(precioCarritoTotal);
 console.log(carrito);
 
 if(preguntaEliminar =="si"){
-    alert ("El total de la compra eliminando el último producto es " + precioCarritoTotal);
+    alert ("El total de la compra eliminando el último producto es $" + precioCarritoTotal);
 };
 
 //MUESTRA EL DETALLE DEL CARRITO
 carrito.forEach ((carritoTotal) => {
     alert(`Producto: ${carritoTotal.nombre}, precio $ ${carritoTotal.precio}`);
 }   );
+
 
 //PREGUNTA AL CLIENTE LAS CANTIDAD DE CUOTAS QUE DESEA PAGAR
 if(precioCarritoTotal>0){
@@ -155,3 +156,10 @@ function cargarProductos (producto){
 };
 cargarProductos();
 
+const titulo_principal = document.querySelectorAll(".titulo1")
+titulo_principal.innerText = "Tu nuevo carrito";
+
+console.log(titulo_principal);
+
+//const titulos =document.
+//h2[0].innerText = "Tu nuevo carrito";
