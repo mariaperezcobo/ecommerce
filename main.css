@@ -9,6 +9,15 @@
     margin: 40 px;
     border-bottom: solid 10px white;
 }
+/*.imagen_chica{
+  width: 70%;
+}
+.contenedor_imagen{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}*/
 
 .container-cards{
     background-color: rgb(180, 196, 196);

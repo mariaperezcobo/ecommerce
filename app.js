@@ -43,26 +43,26 @@ function agregarProducto() {
             case 1:
                 nombre= "Calzas Lisboa";
                 precio= 15000;
-                imagen="";
-                    alt="";
+                imagen= "./imagenes/calzas2.png";
+                alt="calzas estampadas";
                 break;
             case 2:
                     nombre= "Calzas Londres";
                     precio= 12000;
-                    imagen="";
+                    imagen="./imagenes/mujer estir.png";
                     alt="";
                     break;
             case 3:
                     nombre= "Calzas Madrid";
                     precio= 10000;
-                    imagen="";
+                    imagen="./imagenes/zapas2.png";
                     alt="";
                     break;
             case 4:
                 alert ("No seleccionó ningun producto");
                 break;        
         } 
-    carrito.push({nombre,precio, imagen, alt});
+    carrito.push({nombre, precio, imagen, alt});
     } /*else {
         alert ("No seleccionó ningun producto");
     };*/
@@ -144,11 +144,12 @@ function cargarProductos (producto){
         div.classList.add("producto");
         div.innerHTML= `
         <div class="card border-dark mb-3" style="max-width: 20rem;">
-        <div class="card-header">${producto.nombre}</div>
-        <img src="${producto.imagen}" alt="${producto.alt}">
+             <div class="card-header">${producto.nombre}</div>
+            <img src="${producto.imagen}" alt="${producto.alt}">
         <div class="card-body">
             <p class="card-text">$ ${producto.precio}</p>
             <button type="button" class="btn btn-dark">Agregar al carrito</button>
+        </div>
         </div>
         `
         contenedorProductos.append(div);
@@ -157,9 +158,61 @@ function cargarProductos (producto){
 cargarProductos();
 
 const titulo_principal = document.querySelectorAll(".titulo1")
-titulo_principal.innerText = "Tu nuevo carrito";
+titulo_principal[0].innerText = "Productos";
+titulo_principal[1].innerText = "Carrito de compras";
 
-console.log(titulo_principal);
+const container_carrito = document.querySelector(".contenedorCarrito");
+console.log(container_carrito);
 
-//const titulos =document.
-//h2[0].innerText = "Tu nuevo carrito";
+/*for (let productoCarrito of carrito){
+    let listado = document.createElement("li");
+    listado.innerHTML = productoCarrito;
+    container_carrito.appendChild(listado);  
+}*/
+
+/*for (let productoCarrito of carrito){
+    let listado = document.createElement("div");
+    listado.innerHTML = 
+    `
+    <div class="container-cart">
+    <h4 class="card-title">${productoCarrito.nombre}</h4>
+    <p class="card-text">Precio: ${productoCarrito.precio}</p>
+    <button type="button" class="btn btn-outline-primary">Eliminar</button>
+    </div>
+    `
+    container_carrito.appendChild(listado);  
+}*/
+
+for (let productoCarrito of carrito){
+    let listado = document.createElement("div");
+    listado.innerHTML = 
+    `
+        <div class="container-cart">
+    <div>
+    <div class="card border-dark mb-3" style="max-width: 20rem;">
+        <div class="card-header">${productoCarrito.nombre}</div>
+        <img class= "imagen_chica" src="${productoCarrito.imagen}" alt="${productoCarrito.alt}">
+    </div>
+    </div>
+    <p class="card-text">Precio: ${productoCarrito.precio}</p>
+    <button type="button" class="btn btn-outline-primary">Eliminar</button>
+    </div>
+    `
+    container_carrito.appendChild(listado);  
+}
+
+const totalCarrito = document.createElement("div");
+totalCarrito.innerHTML = 
+`
+"<div>El total de su compra es $ ${precioCarritoTotal} </div>";
+`
+container_carrito.appendChild(totalCarrito);  
+
+
+console.log(carrito);
+console.log(container_carrito);
+
+const cuerpoCarrito = document.createElement("div");
+cuerpoCarrito.innerHTML = "<div>tu nuevo carrito</div>";
+console.log(cuerpoCarrito);
+document.body.appendChild(cuerpoCarrito);
