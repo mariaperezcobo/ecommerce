@@ -237,61 +237,92 @@ const cardheader = document.querySelectorAll (".card-header");
 const cardprincipal = document.querySelectorAll (".contenedor_principal");
 const cardtext = document.querySelectorAll (".card-text");
 let botonAgregar = document.querySelectorAll (".botones");
-console.log(botonAgregar);
+//console.log(botonAgregar);
 
-function actualizarBotones(){
+
+/*function actualizarBotones(){
     botonAgregar = document.querySelectorAll (".botones");
     botonAgregar.forEach(boton =>{
         boton.addEventListener("click", agregarAlCarrito);
     });
-    calcularCarrito()
-};
+   // calcularCarrito()
+};*/
 
-console.log(botonAgregar);
 botonAgregar.forEach (itemBoton =>{
-    itemBoton.addEventListener("click", agregarProductoAlCarrito )
+    itemBoton.addEventListener("click", agregarProductoAlCarrito );
+    
+
         });
 
+
+      
 const carritoFinal =[];
+let verificarPosicion;
+let productoComprar;
 
 function agregarProductoAlCarrito(e) {
-    const id = e.currentTarget.id;
-    console.log(id);  
-    const productoComprar = productos.find (producto => producto.id === id);
-    console.log(productoComprar);
-    carrito.push(productoComprar); 
+    {
+        const idItem = e.currentTarget.id; 
+        console.log(idItem);
+       const productoComprar = productos.find (producto => producto.id === idItem);
+       console.log(productoComprar);
+
+       console.log (carrito.some(producto => producto.id === idItem));
+        if (carrito.some(producto => producto.id === idItem)){
+            const verificarPosicion = carrito.findIndex ((producto => producto.id === idItem));
+            console.log(verificarPosicion);
+            carrito[verificarPosicion].cantidad++;
+        }else {
+            productoComprar.cantidad = 1;
+            carrito.push(productoComprar); 
+        };
+
+    };
     console.log(carrito);
     actualizarCarrito();
-    precioCarritoFinal();
-    };
+   
+}; 
 
+
+
+//const container_compra = document.querySelector(".contenedorCarrito");
 
 //AGREGAR CARRITO A LA SECCION DE CARRITO
-function actualizarCarrito(){
-    for (let productoCarrito of carrito){
+function actualizarCarrito(producto){
+  
+    container_compra.innerHTML="";
+  
+     carrito.forEach (producto =>{
         let listado = document.createElement("div");
         listado.innerHTML = 
-        `        <div class="container-cart">
+        `  <div class="container-cart">
         <div>
         <div class="card border-dark mb-3" style="max-width: 20rem;">
-            <div class="card-header">${productoCarrito.nombre}</div>
-            <img class= "imagen_chica" src="${productoCarrito.imagen}" alt="${productoCarrito.alt}">
+            <div class="card-header carrito_eliminar">${producto.nombre}</div>
+            <img class= "imagen_chica" src="${producto.imagen}" alt="${producto.alt}">
         </div>
         </div>
-        <p class="card-text">Precio: ${productoCarrito.precio}</p>
-        <button type="button" class="btn btn-outline-primary">Eliminar</button>
+        <div>
+        <p class="card-text">Precio: ${producto.precio}</p>
+        <p class="card-text">Cantidad: ${producto.cantidad}</p>
+        </div>
+        
+        <button type="button" class="btn btn-outline-primary boton_eliminar">Eliminar</button>
         </div>
         `    
         container_compra.appendChild(listado);  
-    };  
-    
+    });
+
+    precioCarritoFinal();
 };
 
-precioCarritoFinal();
+
+//TO SHOW THE PRICE OF THE SHOPPING CART
 
 function precioCarritoFinal(){
-    console.log(carrito);
     calcularCarrito();
+    resumen.innerHTML="";
+
     const totalCarrito = document.createElement("div");
     totalCarrito.innerHTML = 
     `
@@ -301,14 +332,18 @@ function precioCarritoFinal(){
     
 };
 
-
+//TO CALCULATE THE PRICE OF THE SHOPPING CART
 function calcularCarrito(){
         precioCarritoTotal = carrito.reduce ((acumulado, producto) => {
-            return acumulado + producto.precio},0);
+            return acumulado + (producto.precio * producto.cantidad)},0);
     };
     
 
-  
+//FOR DELETE A PRODUCT
+
+const eliminarProducto = document.querySelectorAll (".carrito_eliminar");
+console.log(eliminarProducto);
+
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -409,6 +444,17 @@ const titulo_principal = document.querySelectorAll(".titulo1")
 titulo_principal[0].innerText = "Productos";
 titulo_principal[1].innerText = "Carrito de compras";
 
+//FORMULARIO
+
+const formulario = document.querySelector(".formulario");
+const nombre_formulario = document.querySelector("#inputName");
+const email_formulario = document.querySelector("#inputEmail");
+
+formulario.addEventListener("submit",(e) =>{
+    e.preventDefault();
+    alert(nombre_formulario.value);
+    formulario.reset();
+})
 
 /*for (let productoCarrito of carrito){
     let listado = document.createElement("li");
