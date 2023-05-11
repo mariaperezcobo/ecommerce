@@ -354,12 +354,35 @@ function eliminar (e){
     console.log(productoEliminar);
     const verificarPosicionEliminar = carrito.findIndex ((producto => producto.nombre === idNombre));
     console.log(verificarPosicionEliminar);
-    carrito.splice(verificarPosicionEliminar,1);
+    if (productoEliminar.cantidad >1){
+
+        carrito[verificarPosicionEliminar].cantidad--;
+    }else {carrito.splice(verificarPosicionEliminar,1);
+
+    };
+    
+    
     console.log(carrito);
 
     actualizarCarrito();
 
 }; 
+
+// function eliminar (e){
+//     const idNombre = e.currentTarget.id;
+//     console.log(idNombre);
+    
+//     const productoEliminar = carrito.find (producto => producto.nombre === idNombre);
+//     console.log(productoEliminar);
+    
+//     const verificarPosicionEliminar = carrito.findIndex ((producto => producto.nombre === idNombre));
+//     console.log(verificarPosicionEliminar);
+//     carrito.splice(verificarPosicionEliminar,1);
+//     console.log(carrito);
+
+//     actualizarCarrito();
+
+// }; 
 
 // if (carrito.some(producto => producto.id === idItem)){
 //     const verificarPosicion = carrito.findIndex ((producto => producto.id === idItem));
