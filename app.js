@@ -17,6 +17,7 @@ const productos = [
 //VARIABLES / ARRAY
 let cuotas;
 let carritoTotal=[];
+let carritoDeStorageJson =[];
 let precioCarritoTotal;
 let precioCarritoTotal2;
 let entradaDos;
@@ -24,6 +25,7 @@ let entrada;
 let carrito=[];
 let comprar ="si";
 let preguntaEliminar;
+let carrito2=[];
 /*
 //CONDICIONAL PARA QUE SIGA COMPRANDO LOS PRODUCTOS QUE QUIERA
 while (comprar =="si"){
@@ -229,7 +231,7 @@ calcularCarrito2();
   */
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+//const carritoDeStorageJson = [];
 
 
 //TO ADD PRODUCTS TO THE SHOPPING CART
@@ -237,11 +239,11 @@ const cardheader = document.querySelectorAll (".card-header");
 const cardprincipal = document.querySelectorAll (".contenedor_principal");
 const cardtext = document.querySelectorAll (".card-text");
 let botonAgregar = document.querySelectorAll (".botones");
-console.log(botonAgregar);
+//console.log(botonAgregar);
 
 botonAgregar.forEach (itemBoton =>{
     itemBoton.addEventListener("click", agregarProductoAlCarrito );
-            });
+    });
 
 const carritoFinal =[];
 let verificarPosicion;
@@ -250,14 +252,14 @@ let productoComprar;
 function agregarProductoAlCarrito(e) {
     {
         const idItem = e.currentTarget.id; 
-        console.log(idItem);
+       // console.log(idItem);
        const productoComprar = productos.find (producto => producto.id === idItem);
-       console.log(productoComprar);
+       //console.log(productoComprar);
 
-       console.log (carrito.some(producto => producto.id === idItem));
+       //console.log (carrito.some(producto => producto.id === idItem));
         if (carrito.some(producto => producto.id === idItem)){
             const verificarPosicion = carrito.findIndex ((producto => producto.id === idItem));
-            console.log(verificarPosicion);
+         //   console.log(verificarPosicion);
             carrito[verificarPosicion].cantidad++;
         }else {
             productoComprar.cantidad = 1;
@@ -265,18 +267,58 @@ function agregarProductoAlCarrito(e) {
         };
 
     };
-    console.log(carrito);
+
+    calcularCarrito();
+   
     actualizarCarrito();
+    enviarAstorage ();
+    traerDeStorage ();
+    
+    console.log(carrito);
    
 }; 
 
+traerDeStorage();
+console.log(carritoDeStorageJson);
+
+
+//TO SEND THE SHOPPING CART TO THE STORAGE
+function enviarAstorage () {
+    const carritoJson = JSON.stringify(carrito);
+   // console.log(carritoJson);
+    localStorage.setItem("carritoFinal", carritoJson);
+
+    const totalCompraJson = JSON.stringify(precioCarritoTotal);
+    //console.log(totalCompraJson);
+    localStorage.setItem("totalFinal", totalCompraJson);
+    
+};
+
+
+
+//TO BRING FOR THE STORAGE TO THE JAVASCRIPT
+function traerDeStorage (){
+    const carritoEnStorage = localStorage.getItem("carritoFinal");
+    //console.log(carritoEnStorage);
+    const carritoDeStorageJson = JSON.parse(carritoEnStorage);
+    console.log(carritoDeStorageJson);
+
+    const precioDeStorage = localStorage.getItem("totalFinal");
+    const precioDeStorageJson = JSON.parse(precioDeStorage);
+    //console.log(precioDeStorageJson);
+};
+
+
+
+//let carritoEnStorage =localStorage.getItem("carrito");
 
 // TO ADD THE CART TO THE HTML
 function actualizarCarrito(producto){
-  
+   
+
     container_compra.innerHTML="";
   
-     carrito.forEach (producto =>{
+    carrito.forEach (producto =>{
         let listado = document.createElement("div");
         listado.innerHTML = 
         `  <div class="container-cart itemParaEliminar">
@@ -299,9 +341,38 @@ function actualizarCarrito(producto){
     });
 
     precioCarritoFinal();
-    eliminarProducto ();
+   eliminarProducto ();
 };
 
+// function actualizarCarrito(producto){
+  
+//     container_compra.innerHTML="";
+  
+//      carrito.forEach (producto =>{
+//         let listado = document.createElement("div");
+//         listado.innerHTML = 
+//         `  <div class="container-cart itemParaEliminar">
+//         <div>
+//         <div class="card border-dark mb-3" style="max-width: 20rem;">
+//             <div class="card-header carrito_eliminar">${producto.nombre}</div>
+//             <img class= "imagen_chica" src="${producto.imagen}" alt="${producto.alt}">
+//         </div>
+//         </div>
+//         <div>
+//         <p class="card-text">Precio: ${producto.precio}</p>
+//         <p class="card-text">Cantidad: ${producto.cantidad}</p>
+//         </div>
+        
+//         <button type="button" class="btn btn-outline-primary boton_eliminar" id="${producto.nombre}">Eliminar</button>
+//         </div>
+//         `    
+//         container_compra.appendChild(listado);  
+
+//     });
+
+//     precioCarritoFinal();
+//     eliminarProducto ();
+// };
 
 //TO SHOW THE PRICE OF THE SHOPPING CART
 
@@ -311,11 +382,16 @@ function precioCarritoFinal(){
     const totalCarrito = document.createElement("div");
     totalCarrito.innerHTML = 
     `
-    <div class="total_compra">El total de su compra es $ ${precioCarritoTotal}</div>
+    <div class="alert alert-dark" role="alert">
+     El total de su compra es $ ${precioCarritoTotal}
+    </div>
     `
     resumen.appendChild(totalCarrito);  
-    
+   // console.log(precioCarritoTotal);
 };
+
+//<button type="button" class="btn btn-outline-secondary">Secondary</button>
+
 
 //TO CALCULATE THE PRICE OF THE SHOPPING CART
 function calcularCarrito(){
@@ -331,19 +407,13 @@ function eliminarProducto (){
     const divParaEliminar = document.querySelectorAll (".itemParaEliminar");
     const botonEliminarProducto = document.querySelectorAll (".boton_eliminar");
     const carrito_eliminar = document.querySelectorAll(".carrito_eliminar");
-    console.log(botonEliminarProducto);
+    //console.log(botonEliminarProducto);
 
     botonEliminarProducto.forEach (item =>{
         item.addEventListener("click", eliminar);
          });
 
 };
-
-
-eliminarProducto();
-botonEliminarProducto.forEach (item =>{
-    item.addEventListener("click", eliminar);
-     });
 
 
 function eliminar (e){
@@ -356,16 +426,15 @@ function eliminar (e){
     console.log(verificarPosicionEliminar);
     if (productoEliminar.cantidad >1){
 
-        carrito[verificarPosicionEliminar].cantidad--;
+    carrito[verificarPosicionEliminar].cantidad--;
     }else {carrito.splice(verificarPosicionEliminar,1);
 
     };
     
-    
     console.log(carrito);
-
     actualizarCarrito();
-
+    
+    
 }; 
 
 // function eliminar (e){
