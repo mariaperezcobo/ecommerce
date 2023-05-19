@@ -51,10 +51,11 @@
   }
 .margen{
   border-bottom: 20px solid white;
+  
 }
 
 .colorFormulario{
-    background-color: rgb(180, 196, 196);
+    background-color: rgb(180, 196, 196); 
     border: 20px solid rgb(180, 196, 196);
   }
 

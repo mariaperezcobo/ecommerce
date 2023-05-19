@@ -149,8 +149,57 @@ function agregarProductoAlCarrito(e) {
     actualizarCarrito();
     enviarAstorage ();
     traerDeStorage ();
+    cartel ();
 }; 
 
+
+function cartel (){
+    Toastify({
+        text: "Producto agregado al carrito",
+        duration: 1500,
+        newWindow: true,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "rgb(30, 159, 116)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+};
+
+function cartelEliminar (){
+    Toastify({
+        text: "Producto eliminado",
+        duration: 1500,
+        newWindow: true,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "rgb(16, 84, 84)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+};
+
+function cartelCarritoVacio (){
+    Toastify({
+        text: "Productos eliminados",
+        duration: 1500,
+        newWindow: true,
+        close: false,
+        gravity: "top", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+          background: "rgb(16, 84, 84)",
+        },
+        onClick: function(){} // Callback after click
+      }).showToast();
+};
 
 console.log(carritoDeStorageJson);
 
@@ -264,7 +313,7 @@ function eliminar (e){
     //console.log(carrito);
     actualizarCarrito();
     enviarAstorage ();
-    
+    cartelEliminar ();
 }; 
 
 
@@ -281,7 +330,14 @@ const email_formulario = document.querySelector("#inputEmail");
 
 formulario.addEventListener("submit",(e) =>{
     e.preventDefault();
-    alert(`Compra realizada con éxito! Nos contactaremos con vos a la brevedad ${nombre_formulario.value}!!`);
+
+    Swal.fire({
+    icon: 'success',
+    title: 'Compra realizada con éxito!',
+    text: 'Muchas gracias!',
+    footer: '<a href="">Nos contactaremos con vos a la brevedad</a>'
+  })
+    // alert(`Compra realizada con éxito! Nos contactaremos con vos a la brevedad ${nombre_formulario.value}!!`);
     formulario.reset();
 })
 
@@ -305,7 +361,11 @@ function eliminarCarrito(){
 carrito = [];
 actualizarCarrito();
 enviarAstorage ();
+cartelCarritoVacio ();
 };
+
+
+
 
 
 /*
