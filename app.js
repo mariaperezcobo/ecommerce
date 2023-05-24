@@ -362,6 +362,7 @@ carrito = [];
 actualizarCarrito();
 enviarAstorage ();
 cartelCarritoVacio ();
+
 };
 
 
