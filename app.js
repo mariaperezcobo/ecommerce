@@ -1,19 +1,19 @@
 
 //ARRAY DE PRODUCTOS
-const productos = [
-    {nombre:"Calzas Lisboa", precio: 15000, imagen:"./imagenes/calzas2.png", alt:"calzas estampadas", id: "lisboa", categoria: "calzas"},
-    {nombre: "Calzas Londres", precio: 12000, imagen:"./imagenes/mujer estir.png", alt:"mujer estirando con calzas grises", id: "londres",categoria: "calzas"},
-    {nombre:"Calzas Madrid", precio: 10000, imagen:"./imagenes/zapas2.png", alt:"calzas estampadas blancas y azules", id: "madrid", categoria: "calzas"},
-    {nombre:"Top Miami", precio: 8000, imagen:"./imagenes/remera3.png", alt:"remera banca y gris",id: "miami", categoria: "remeras"},
-    {nombre:"Calzas Bariloche", precio:11000, imagen:"./imagenes/calzas3.png", alt:"mujer sentada en la playa, calzas estampadas", id: "bariloche", categoria: "calzas"},
-    {nombre:"Remera Buzios", precio: 7500, imagen:"./imagenes/mat(3).png", alt:"remera rosa",id: "buzios", categoria: "remeras"},
-    {nombre:"Calzas Brasil", precio:11000, imagen:"./imagenes/yoga3.png", alt:"mujer elongando, calzas grises", id: "brasil", categoria: "calzas"},
-    {nombre:"Remera Paris", precio: 7500, imagen:"./imagenes/remera1.png", alt:"remera banca y negra",id: "paris", categoria: "remeras"},
-    {nombre:"Remera Roma", precio: 7000, imagen:"./imagenes/conperro.png", alt:"remera verde",id: "roma", categoria: "remeras"},
-    {nombre:"Calzas Barcelona", precio:10000, imagen:"./imagenes/ropa960.png", alt:"dos chicas, una calza negra y otra blanca", id: "barcelona", categoria: "calzas"},
-    {nombre:"Calzas Nueva York", precio:11000, imagen:"./imagenes/zapas.png", alt:"mujer atandose las zapatillas , calzas negras", id: "nueva york", categoria: "calzas"},
-    {nombre:"Calzas Amsterdam", precio:12000, imagen:"./imagenes/estirando.png", alt:"mujer estirando , calzas negras", id: "amsterdam", categoria: "calzas"},
-] 
+// const productos = [
+//     {nombre:"Calzas Lisboa", precio: 15000, imagen:"./imagenes/calzas2.png", alt:"calzas estampadas", id: "lisboa", categoria: "calzas"},
+//     {nombre: "Calzas Londres", precio: 12000, imagen:"./imagenes/mujer estir.png", alt:"mujer estirando con calzas grises", id: "londres",categoria: "calzas"},
+//     {nombre:"Calzas Madrid", precio: 10000, imagen:"./imagenes/zapas2.png", alt:"calzas estampadas blancas y azules", id: "madrid", categoria: "calzas"},
+//     {nombre:"Top Miami", precio: 8000, imagen:"./imagenes/remera3.png", alt:"remera banca y gris",id: "miami", categoria: "remeras"},
+//     {nombre:"Calzas Bariloche", precio:11000, imagen:"./imagenes/calzas3.png", alt:"mujer sentada en la playa, calzas estampadas", id: "bariloche", categoria: "calzas"},
+//     {nombre:"Remera Buzios", precio: 7500, imagen:"./imagenes/mat(3).png", alt:"remera rosa",id: "buzios", categoria: "remeras"},
+//     {nombre:"Calzas Brasil", precio:11000, imagen:"./imagenes/yoga3.png", alt:"mujer elongando, calzas grises", id: "brasil", categoria: "calzas"},
+//     {nombre:"Remera Paris", precio: 7500, imagen:"./imagenes/remera1.png", alt:"remera banca y negra",id: "paris", categoria: "remeras"},
+//     {nombre:"Remera Roma", precio: 7000, imagen:"./imagenes/conperro.png", alt:"remera verde",id: "roma", categoria: "remeras"},
+//     {nombre:"Calzas Barcelona", precio:10000, imagen:"./imagenes/ropa960.png", alt:"dos chicas, una calza negra y otra blanca", id: "barcelona", categoria: "calzas"},
+//     {nombre:"Calzas Nueva York", precio:11000, imagen:"./imagenes/zapas.png", alt:"mujer atandose las zapatillas , calzas negras", id: "nueva york", categoria: "calzas"},
+//     {nombre:"Calzas Amsterdam", precio:12000, imagen:"./imagenes/estirando.png", alt:"mujer estirando , calzas negras", id: "amsterdam", categoria: "calzas"},
+// ] 
 
 //VARIABLES
 let carritoTotal=[];
@@ -22,6 +22,7 @@ let carrito;
 let productosFiltrados;
 let verificarPosicion;
 let productoComprar;
+let productos=[];
 
 
 //TO SEND THE PRODUCTS TO THE HTML
@@ -30,7 +31,22 @@ const container_compra = document.querySelector(".contenedorCarrito");
 const resumen = document.querySelector(".resumen");
 let botonAgregar = document.querySelectorAll (".botones");
 
-
+const productosJson = async()=>{
+    const resp = await fetch ("./data.json")
+    const data = await resp.json()
+    productos = data;
+    cargarProductos(productos);
+    };
+    productosJson();
+    
+// fetch("./data.json")
+// .then (res => res.json())
+// .then (data =>{
+//     productos =data;
+//     cargarProductos(productos)
+//     console.log(data)
+// ;})
+    
 function cargarProductos (productosElegidos){
     productosElegidos.forEach(producto =>{
         const div = document.createElement("div");
@@ -48,8 +64,8 @@ function cargarProductos (productosElegidos){
         contenedorProductos.append(div);
     });
     actualizarBotones (); 
-    console.log(productosElegidos);
-    console.log(botonAgregar);
+    //console.log(productosElegidos);
+    //console.log(botonAgregar);
    
 };
 
@@ -59,7 +75,7 @@ function actualizarBotones () {
     botonAgregar.forEach (itemBoton =>{
          itemBoton.addEventListener("click", agregarProductoAlCarrito );
     });
-    console.log(botonAgregar);
+    //console.log(botonAgregar);
 };
 
 
@@ -119,7 +135,7 @@ if (carritoDeStorageJson){
 carrito =[];
 };
 
-console.log(carrito);
+//console.log(carrito);
 actualizarCarrito();
 
 
@@ -201,7 +217,7 @@ function cartelCarritoVacio (){
       }).showToast();
 };
 
-console.log(carritoDeStorageJson);
+//console.log(carritoDeStorageJson);
 
 //TO SEND THE SHOPPING CART TO THE STORAGE
 function enviarAstorage () {
@@ -353,7 +369,7 @@ vaciarCarrito.innerHTML =
 contenedorVaciar.appendChild(vaciarCarrito);  
 
 const botonVaciar = document.querySelector(".boton_vaciar");
-console.log(botonVaciar);
+//console.log(botonVaciar);
 
 botonVaciar.addEventListener("click", eliminarCarrito);
 
