@@ -47,11 +47,10 @@
     background-color: rgb(156, 155, 155);
     text-align: center;
     padding: 30px;
-    border-bottom: 10px solid white;
+    
   }
-.margen{
-  border-bottom: 20px solid white;
-  
+.carritoSubtitulo{
+  margin-left: 5px;
 }
 
 .colorFormulario{
@@ -73,6 +72,54 @@
     padding: 10 px;
 
   }
+  .encabezado{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-bottom: 10px solid white;
+   
+      }
 
+.seccion_carritos{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+ 
+ width: 40%;
+ 
+}
 
-  
+  .margen{
+    
+    margin-left: 10px;
+    width: 60%;
+   
+  }
+  .contenedor_logoCarrito{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-right: 10px;
+  }
+  .numero{
+    
+    margin-left: 10px;
+    
+   
+  }
+
+.carritoSubtitulo{
+  color: black;
+  text-decoration: none;
+}
+  @media screen and (max-width: 600px) {
+   
+    .seccion_carritos{
+     width: 30%;
+    }
+    
+      .margen{
+        margin-left: 10px;
+        width: 70%;
+       
+      }
+  }

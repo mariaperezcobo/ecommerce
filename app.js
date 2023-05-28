@@ -1,20 +1,4 @@
 
-//ARRAY DE PRODUCTOS
-// const productos = [
-//     {nombre:"Calzas Lisboa", precio: 15000, imagen:"./imagenes/calzas2.png", alt:"calzas estampadas", id: "lisboa", categoria: "calzas"},
-//     {nombre: "Calzas Londres", precio: 12000, imagen:"./imagenes/mujer estir.png", alt:"mujer estirando con calzas grises", id: "londres",categoria: "calzas"},
-//     {nombre:"Calzas Madrid", precio: 10000, imagen:"./imagenes/zapas2.png", alt:"calzas estampadas blancas y azules", id: "madrid", categoria: "calzas"},
-//     {nombre:"Top Miami", precio: 8000, imagen:"./imagenes/remera3.png", alt:"remera banca y gris",id: "miami", categoria: "remeras"},
-//     {nombre:"Calzas Bariloche", precio:11000, imagen:"./imagenes/calzas3.png", alt:"mujer sentada en la playa, calzas estampadas", id: "bariloche", categoria: "calzas"},
-//     {nombre:"Remera Buzios", precio: 7500, imagen:"./imagenes/mat(3).png", alt:"remera rosa",id: "buzios", categoria: "remeras"},
-//     {nombre:"Calzas Brasil", precio:11000, imagen:"./imagenes/yoga3.png", alt:"mujer elongando, calzas grises", id: "brasil", categoria: "calzas"},
-//     {nombre:"Remera Paris", precio: 7500, imagen:"./imagenes/remera1.png", alt:"remera banca y negra",id: "paris", categoria: "remeras"},
-//     {nombre:"Remera Roma", precio: 7000, imagen:"./imagenes/conperro.png", alt:"remera verde",id: "roma", categoria: "remeras"},
-//     {nombre:"Calzas Barcelona", precio:10000, imagen:"./imagenes/ropa960.png", alt:"dos chicas, una calza negra y otra blanca", id: "barcelona", categoria: "calzas"},
-//     {nombre:"Calzas Nueva York", precio:11000, imagen:"./imagenes/zapas.png", alt:"mujer atandose las zapatillas , calzas negras", id: "nueva york", categoria: "calzas"},
-//     {nombre:"Calzas Amsterdam", precio:12000, imagen:"./imagenes/estirando.png", alt:"mujer estirando , calzas negras", id: "amsterdam", categoria: "calzas"},
-// ] 
-
 //VARIABLES
 let carritoTotal=[];
 let precioCarritoTotal;
@@ -166,6 +150,8 @@ function agregarProductoAlCarrito(e) {
     enviarAstorage ();
     traerDeStorage ();
     cartel ();
+    actualizarNumero ();
+    console.log(cantidadProductos);
 }; 
 
 
@@ -272,6 +258,8 @@ function actualizarCarrito(producto){
     });
     precioCarritoFinal();
     eliminarProducto ();
+    
+
 };
 
 
@@ -319,7 +307,7 @@ function eliminar (e){
     const productoEliminar = carrito.find (producto => producto.nombre === idNombre);
     console.log(productoEliminar);
     const verificarPosicionEliminar = carrito.findIndex ((producto => producto.nombre === idNombre));
-    console.log(verificarPosicionEliminar);
+    //console.log(verificarPosicionEliminar);
     if (productoEliminar.cantidad >1){
 
     carrito[verificarPosicionEliminar].cantidad--;
@@ -330,6 +318,7 @@ function eliminar (e){
     actualizarCarrito();
     enviarAstorage ();
     cartelEliminar ();
+    actualizarNumero();
 }; 
 
 
@@ -378,73 +367,35 @@ carrito = [];
 actualizarCarrito();
 enviarAstorage ();
 cartelCarritoVacio ();
-
+actualizarNumero();
 };
 
+//TO UPDATE THE NUMBER OF PRODUCTS IN THE SHOPPING CART
+const numeros = document.querySelector(".cantProductos");
+// const numero = document.querySelector(".contenedor_Carrito");
+
+
+let cantidadProductos;
+
+function actualizarNumero (){
+     numeros.innerHTML="";
+     traerDeStorage ();
+    cantidadProductos = carrito.reduce ((acumulado, producto) => {
+        return acumulado + (producto.cantidad)},0);
+
+       
+const numeroProductos = document.createElement("div");
+numeroProductos.innerHTML = 
+`
+<div class="cantProductos">${cantidadProductos}
+</div>
+
+
+`
+numeros.appendChild(numeroProductos);  
+}
+actualizarNumero();
 
 
 
-
-/*
-//PARA AGREGAR un producto DESDE EL BOTON AGREGAR////////////////////////////////////////////////////
-const cardheader = document.querySelector (".card-header");
-const cardtext = document.querySelector (".card-text");
-const boton = document.querySelector (".boton");
-
-boton.addEventListener("click", mostrar);
-
-let carrito2=[];
-
-    function mostrar (e){
-        const boton = document.querySelector (".boton");
-
-        console.log(cardheader.textContent);
-        console.log(cardtext.textContent);
-        const productoComprado = cardheader.textContent;
-        const buscar = productos.find ((producto) => producto.nombre === productoComprado) ;
-        console.log(productoComprado);
-        console.log(buscar);
-        carrito2.push (buscar);
-        console.log(carrito2);
-        calcularCarrito2();
-        console.log(precioCarritoTotal2);
-        carrito2.forEach ((producto) => {
-            console.log(`Producto: ${producto.nombre}, precio $ ${producto.precio}`);
-        }   );
-
-
-        for (let productoCarrito of carrito2){
-            let listado = document.createElement("div");
-            listado.innerHTML = 
-            `        <div class="container-cart">
-            <div>
-            <div class="card border-dark mb-3" style="max-width: 20rem;">
-                <div class="card-header">${productoCarrito.nombre}</div>
-                <img class= "imagen_chica" src="${productoCarrito.imagen}" alt="${productoCarrito.alt}">
-            </div>
-            </div>
-            <p class="card-text">Precio: ${productoCarrito.precio}</p>
-            <button type="button" class="btn btn-outline-primary">Eliminar</button>
-            </div>
-            `    
-            container_carrito.appendChild(listado);  
-        }
-        const totalCarrito = document.createElement("div");
-        totalCarrito.innerHTML = 
-        `
-        <div class="total_compra">El total de su compra es $ ${precioCarritoTotal2}</div>
-        `
-        container_carrito.appendChild(totalCarrito);  
-    };
-  
-
-   
-
-function calcularCarrito2(){
-        precioCarritoTotal2 = carrito2.reduce ((acumulado, producto) => {
-            return acumulado + producto.precio},0);
-    };
-calcularCarrito2();
-
-  */
 /////////////////////////////////////////////////////////////////////////////////////////////////
