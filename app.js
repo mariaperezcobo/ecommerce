@@ -21,10 +21,10 @@ const productosJson = async()=>{
     productos = data;
     cargarProductos(productos);
     };
-    productosJson();
-    
 
-    
+productosJson();
+
+
 function cargarProductos (productosElegidos){
     productosElegidos.forEach(producto =>{
         const div = document.createElement("div");
@@ -44,11 +44,11 @@ function cargarProductos (productosElegidos){
     actualizarBotones (); 
     //console.log(productosElegidos);
     //console.log(botonAgregar);
-   
+
 };
 
 
-function actualizarBotones () {
+function actualizarBotones(){
     botonAgregar = document.querySelectorAll (".botones");
     botonAgregar.forEach (itemBoton =>{
          itemBoton.addEventListener("click", agregarProductoAlCarrito );
@@ -65,21 +65,19 @@ cargarProductos(productos);
 const producto_todos= document.querySelector(".todos_productos");
 producto_todos.addEventListener("click", filtrarTodos );
 
-function filtrarTodos (){
+function filtrarTodos(){
     contenedorProductos.innerHTML="";
     //productosFiltrados = productos;
     // console.log(productosFiltrados);
     cargarProductos(productos);
-    
 };
-
 
 //TO SELECT ONLY "CALZAS"
 
 const producto_calzas = document.querySelector(".producto_calzas");
 producto_calzas.addEventListener("click", filtrarCalzas );
 
-function filtrarCalzas (){
+function filtrarCalzas(){
     contenedorProductos.innerHTML="";
     const productosCalzas = productos.filter (producto => producto.categoria === "calzas");
     console.log(productosCalzas);
@@ -96,13 +94,11 @@ function filtrarRemeras (){
     const productosRemeras = productos.filter (producto => producto.categoria === "remeras");
     console.log(productosRemeras);
     cargarProductos(productosRemeras);
-   
 };
 
 
 // TO BRING INFORMATION FOR THE STORAGE
 const carritoEnStorage = localStorage.getItem("carritoFinal");
-//console.log(carritoEnStorage);
 const carritoDeStorageJson = JSON.parse(carritoEnStorage);
 
 traerDeStorage ();
@@ -113,7 +109,6 @@ if (carritoDeStorageJson){
 carrito =[];
 };
 
-//console.log(carrito);
 actualizarCarrito();
 
 
@@ -125,14 +120,11 @@ const cardtext = document.querySelectorAll (".card-text");
 function agregarProductoAlCarrito(e) {
     {
         const idItem = e.currentTarget.id; 
-       // console.log(idItem);
        const productoComprar = productos.find (producto => producto.id === idItem);
        console.log(productoComprar);
 
-       //console.log (carrito.some(producto => producto.id === idItem));
         if (carrito.some(producto => producto.id === idItem)){
             const verificarPosicion = carrito.findIndex ((producto => producto.id === idItem));
-         //   console.log(verificarPosicion);
             carrito[verificarPosicion].cantidad++;
         }else {
             productoComprar.cantidad = 1;
@@ -277,7 +269,7 @@ function calcularCarrito(){
         precioCarritoTotal = carrito.reduce ((acumulado, producto) => {
             return acumulado + (producto.precio * producto.cantidad)},0);
 };
-    
+
 
 //TO DELETE A PRODUCT
 const botonEliminarProducto = document.querySelectorAll (".boton_eliminar");
@@ -301,11 +293,11 @@ function eliminar (e){
     console.log(productoEliminar);
     const verificarPosicionEliminar = carrito.findIndex ((producto => producto.nombre === idNombre));
     //console.log(verificarPosicionEliminar);
+
     if (productoEliminar.cantidad >1){
-
-    carrito[verificarPosicionEliminar].cantidad--;
-    }else {carrito.splice(verificarPosicionEliminar,1);
-
+        carrito[verificarPosicionEliminar].cantidad--;
+    }else {
+        carrito.splice(verificarPosicionEliminar,1);
     };
     //console.log(carrito);
     actualizarCarrito();
@@ -313,7 +305,6 @@ function eliminar (e){
     cartelEliminar ();
     actualizarNumero();
 }; 
-
 
 //TO CHANGE THE TITLES OF THE HTML
 const titulo_principal = document.querySelectorAll(".titulo1")
@@ -335,7 +326,6 @@ formulario.addEventListener("submit",(e) =>{
     text: 'Muchas gracias!',
     footer: '<a href="">Nos contactaremos con vos a la brevedad</a>'
   })
-    // alert(`Compra realizada con éxito! Nos contactaremos con vos a la brevedad ${nombre_formulario.value}!!`);
     formulario.reset();
 })
 
@@ -351,7 +341,6 @@ vaciarCarrito.innerHTML =
 contenedorVaciar.appendChild(vaciarCarrito);  
 
 const botonVaciar = document.querySelector(".boton_vaciar");
-//console.log(botonVaciar);
 
 botonVaciar.addEventListener("click", eliminarCarrito);
 
@@ -390,7 +379,3 @@ numeroProductos.innerHTML =
 numeros.appendChild(numeroProductos);  
 };
 actualizarNumero();
-
-
-/* <div class="cantProductos">${cantidadProductos}
-</div> */
