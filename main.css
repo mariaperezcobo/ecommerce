@@ -99,16 +99,22 @@
     display: flex;
     flex-wrap: nowrap;
     margin-right: 10px;
-  }
-  .numero{
-    
-    margin-left: 10px;
-    
-   
+    background-color: rgb(42, 42, 249);
+    color:white;
   }
 
+  .numero{
+    margin-left: 10px;
+  }
+  .cantProductos{
+    margin-left: 3px;
+  }
+.colorCirculo{
+  background-color: red;
+  color: white;
+}
 .carritoSubtitulo{
-  color: black;
+  color: white;
   text-decoration: none;
 }
   @media screen and (max-width: 600px) {
