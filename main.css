@@ -62,25 +62,6 @@
   padding: 10 px;
   }
 
-.encabezado{
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  border-bottom: 10px solid white; 
-  }
-
-.seccion_carritos{
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  width: 40%;
-}
-
-.margen{
-  margin-left: 10px;
-  width: 60%;
-  }
-
 .contenedor_logoCarrito{
   display: flex;
   flex-wrap: nowrap;
@@ -105,4 +86,26 @@
 .carritoSubtitulo{
   color: white;
   text-decoration: none;
+}
+
+.encabezado{
+  display: flex;
+  flex-wrap: nowrap;
+}
+.filtro_tipo_producto{
+  display: flex;
+  flex-wrap: nowrap;
+  width: 60%;
+  align-items: center;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.logo_carrito{
+  display: flex;
+  flex-wrap: nowrap;
+  width: 40%;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }

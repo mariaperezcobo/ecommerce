@@ -8,6 +8,7 @@ let verificarPosicion;
 let productoComprar;
 let productos=[];
 
+;
 
 //TO SEND THE PRODUCTS TO THE HTML
 const contenedorProductos = document.querySelector("#contenedor-productos");
@@ -23,6 +24,7 @@ const productosJson = async()=>{
     };
 
 productosJson();
+filtrosEncabezado ();
 
 
 function cargarProductos (productosElegidos){
@@ -61,6 +63,9 @@ function actualizarBotones(){
 
 //TO SELECT ALL
 cargarProductos(productos);
+
+
+
 
 const producto_todos= document.querySelector(".todos_productos");
 producto_todos.addEventListener("click", filtrarTodos );
@@ -136,7 +141,7 @@ function agregarProductoAlCarrito(e) {
     enviarAstorage();
     traerDeStorage();
     cartel();
-    actualizarNumero();
+    actualizarNumeroCarrito();
 }; 
 
 //TOASTIFY: TO ADD PRODUCTS
@@ -217,6 +222,7 @@ function traerDeStorage (){
 
 // TO ADD THE CART TO THE HTML
 function actualizarCarrito(producto){
+    
     traerDeStorage ();
 
     container_compra.innerHTML="";
@@ -244,7 +250,7 @@ function actualizarCarrito(producto){
     });
     precioCarritoFinal();
     eliminarProducto ();
-    
+    actualizarNumeroCarrito();
 };
 
 
@@ -303,7 +309,7 @@ function eliminar (e){
     actualizarCarrito();
     enviarAstorage ();
     cartelEliminar ();
-    actualizarNumero();
+    actualizarNumeroCarrito();
 }; 
 
 //TO CHANGE THE TITLES OF THE HTML
@@ -349,21 +355,82 @@ carrito = [];
 actualizarCarrito();
 enviarAstorage ();
 cartelCarritoVacio ();
-actualizarNumero();
+
 };
 
 //TO UPDATE THE NUMBER OF PRODUCTS IN THE SHOPPING CART
-const numeros = document.querySelector(".cantProductos");
-let cantidadProductos;
+// const numeros = document.querySelector(".cantProductos");
+// let cantidadProductos;
 
-function actualizarNumero (){
-    numeros.innerHTML="";
+// function actualizarNumero (){
+
+
+//     numeros.innerHTML="";
+//     traerDeStorage ();
+//     cantidadProductos = carrito.reduce ((acumulado, producto) => {
+//         return acumulado + (producto.cantidad)},0);
+
+// const numeroProductos = document.createElement("div");
+// numeroProductos.innerHTML = 
+// `
+// <button type="button" class="btn position-relative contenedor_logoCarrito">
+//     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
+//          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+//     </svg>  
+//     <a class="carritoSubtitulo" href="./index.html#tusCompras">Carrito</a> 
+//     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge rounded-pill colorCirculo">
+//         ${cantidadProductos}
+//     <span class="visually-hidden">unread messages</span>
+//   </span>
+// </button>
+// `
+// numeros.appendChild(numeroProductos);  
+// };
+// actualizarNumero();
+
+
+//TO SEND TO THE HTML THE OPTIONS TO FILTER
+
+
+
+function filtrosEncabezado (){
+
+    const filtros = document.querySelector(".filtro_tipo_producto");
+    // console.log(filtros)
+    let filtroProductos;
+
+    const filtroPorProductos = document.createElement("div");
+    filtroPorProductos.innerHTML = 
+    `
+    <button type="button" class="btn btn-secondary filtro todos_productos" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+        Todos los Productos
+      </button>
+      <button type="button" class="btn btn-secondary filtro producto_calzas" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Right popover">
+        Calzas
+      </button>
+      <button type="button" class="btn btn-secondary filtro producto_remeras" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Bottom popover">
+        Remeras
+      </button>
+    `
+    filtros.appendChild(filtroPorProductos);  
+    ;
+
+}
+
+
+
+
+
+function actualizarNumeroCarrito (){
+    const logo_carrito = document.querySelector(".logo_carrito");
+    
+    logo_carrito.innerHTML="";
     traerDeStorage ();
     cantidadProductos = carrito.reduce ((acumulado, producto) => {
         return acumulado + (producto.cantidad)},0);
 
-const numeroProductos = document.createElement("div");
-numeroProductos.innerHTML = 
+const numeroProductosCarrito = document.createElement("div");
+numeroProductosCarrito.innerHTML = 
 `
 <button type="button" class="btn position-relative contenedor_logoCarrito">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
@@ -376,6 +443,7 @@ numeroProductos.innerHTML =
   </span>
 </button>
 `
-numeros.appendChild(numeroProductos);  
+logo_carrito.appendChild(numeroProductosCarrito);  
 };
-actualizarNumero();
+actualizarNumeroCarrito();
+
