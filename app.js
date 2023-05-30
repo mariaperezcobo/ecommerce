@@ -126,7 +126,7 @@ function agregarProductoAlCarrito(e) {
     {
         const idItem = e.currentTarget.id; 
        const productoComprar = productos.find (producto => producto.id === idItem);
-       console.log(productoComprar);
+       //console.log(productoComprar);
 
         if (carrito.some(producto => producto.id === idItem)){
             const verificarPosicion = carrito.findIndex ((producto => producto.id === idItem));
@@ -293,10 +293,10 @@ function eliminarProducto (){
 
 function eliminar (e){
     const idNombre = e.currentTarget.id;
-    console.log(idNombre);
+    //console.log(idNombre);
     
     const productoEliminar = carrito.find (producto => producto.nombre === idNombre);
-    console.log(productoEliminar);
+    //console.log(productoEliminar);
     const verificarPosicionEliminar = carrito.findIndex ((producto => producto.nombre === idNombre));
     //console.log(verificarPosicionEliminar);
 
