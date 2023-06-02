@@ -9,6 +9,7 @@ let productoComprar;
 let productos=[];
 
 
+
 //TO SEND THE PRODUCTS TO THE HTML
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const container_compra = document.querySelector(".contenedorCarrito");
@@ -63,8 +64,6 @@ function actualizarBotones(){
 cargarProductos(productos);
 
 
-
-
 const producto_todos= document.querySelector(".todos_productos");
 producto_todos.addEventListener("click", filtrarTodos );
 
@@ -108,16 +107,8 @@ traerDeStorage ();
 
 (carritoDeStorageJson) ? carrito = carritoDeStorageJson : carrito =[];
 
-
 actualizarCarrito();
 
-// if (carritoDeStorageJson){
-//     carrito = carritoDeStorageJson;
-// }    else{
-// carrito =[];
-// };
-// console.log(carrito);
-// actualizarCarrito();
 
 //TO ADD PRODUCTS TO THE SHOPPING CART
 const cardheader = document.querySelectorAll (".card-header");
@@ -320,23 +311,6 @@ titulo_principal[0].innerText = "Productos";
 titulo_principal[1].innerText = "Carrito de compras";
 
 
-//FORMULARIO
-const formulario = document.querySelector(".formulario");
-const nombre_formulario = document.querySelector("#inputName");
-const email_formulario = document.querySelector("#inputEmail");
-
-formulario.addEventListener("submit",(e) =>{
-    e.preventDefault();
-
-    Swal.fire({
-    icon: 'success',
-    title: 'Compra realizada con éxito!',
-    text: 'Muchas gracias!',
-    footer: '<a href="">Nos contactaremos con vos a la brevedad</a>'
-  })
-    formulario.reset();
-})
-
 
 //BOTON DE VACIAR EL CARRITO
 const contenedorVaciar = document.querySelector(".vaciar_carrito");
@@ -361,7 +335,6 @@ cartelCarritoVacio ();
 };
 
 //TO SEND TO THE HTML THE OPTIONS TO FILTER
-
 
 function filtrosEncabezado (){
 
@@ -423,4 +396,43 @@ seccion_arriba.innerHTML=
 <a class= "formato" href="./index.html#arriba">Ir arriba</a>
 `
 arriba.appendChild(seccion_arriba);
+
+
+//to send the nav bar to the HTML
+const barraNab = document.querySelector (".barra_nav")
+
+const seccion_barraNav = document.createElement ("div")
+seccion_barraNav.innerHTML=
+`
+<nav class="color--barranav navbar navbar-expand-lg">
+<div class="container-fluid">
+    <a class="navbar-brand" href="#"></a>
+    <img class="logo" src="./imagenes/logo2.png" alt="logo">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
+        aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+</nav>
+`
+barraNab.appendChild(seccion_barraNav);
+
+
+//form
+
+const formulario = document.querySelector(".formulario");
+const nombre_formulario = document.querySelector("#inputName");
+const email_formulario = document.querySelector("#inputEmail");
+    
+formulario.addEventListener("submit",(e) =>{
+        e.preventDefault();
+    
+        Swal.fire({
+        icon: 'success',
+        title: 'Compra realizada con éxito!',
+        text: 'Muchas gracias!',
+        footer: '<a href="">Nos contactaremos con vos a la brevedad</a>'
+      })
+        formulario.reset();
+    })
 
