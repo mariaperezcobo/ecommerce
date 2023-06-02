@@ -8,7 +8,6 @@ let verificarPosicion;
 let productoComprar;
 let productos=[];
 
-;
 
 //TO SEND THE PRODUCTS TO THE HTML
 const contenedorProductos = document.querySelector("#contenedor-productos");
@@ -46,7 +45,6 @@ function cargarProductos (productosElegidos){
     actualizarBotones (); 
     //console.log(productosElegidos);
     //console.log(botonAgregar);
-
 };
 
 
@@ -85,7 +83,7 @@ producto_calzas.addEventListener("click", filtrarCalzas );
 function filtrarCalzas(){
     contenedorProductos.innerHTML="";
     const productosCalzas = productos.filter (producto => producto.categoria === "calzas");
-    console.log(productosCalzas);
+    // console.log(productosCalzas);
     cargarProductos(productosCalzas);
 };
 
@@ -97,7 +95,7 @@ producto_remeras.addEventListener("click", filtrarRemeras );
 function filtrarRemeras (){
     contenedorProductos.innerHTML="";
     const productosRemeras = productos.filter (producto => producto.categoria === "remeras");
-    console.log(productosRemeras);
+    //console.log(productosRemeras);
     cargarProductos(productosRemeras);
 };
 
@@ -108,14 +106,18 @@ const carritoDeStorageJson = JSON.parse(carritoEnStorage);
 
 traerDeStorage ();
 
-if (carritoDeStorageJson){
-    carrito = carritoDeStorageJson;
-}    else{
-carrito =[];
-};
+(carritoDeStorageJson) ? carrito = carritoDeStorageJson : carrito =[];
+
 
 actualizarCarrito();
 
+// if (carritoDeStorageJson){
+//     carrito = carritoDeStorageJson;
+// }    else{
+// carrito =[];
+// };
+// console.log(carrito);
+// actualizarCarrito();
 
 //TO ADD PRODUCTS TO THE SHOPPING CART
 const cardheader = document.querySelectorAll (".card-header");
@@ -261,7 +263,7 @@ function precioCarritoFinal(){
     const totalCarrito = document.createElement("div");
     totalCarrito.innerHTML = 
     `
-    <div class="alert alert-dark" role="alert">
+    <div class="resumen_compra alert alert-dark" role="alert">
      El total de su compra es $ ${precioCarritoTotal}
     </div>
     `
@@ -281,7 +283,7 @@ function calcularCarrito(){
 const botonEliminarProducto = document.querySelectorAll (".boton_eliminar");
 
 function eliminarProducto (){
-    const divParaEliminar = document.querySelectorAll (".itemParaEliminar");
+    // const divParaEliminar = document.querySelectorAll (".itemParaEliminar");
     const botonEliminarProducto = document.querySelectorAll (".boton_eliminar");
     const carrito_eliminar = document.querySelectorAll(".carrito_eliminar");
     //console.log(botonEliminarProducto);
@@ -358,39 +360,7 @@ cartelCarritoVacio ();
 
 };
 
-//TO UPDATE THE NUMBER OF PRODUCTS IN THE SHOPPING CART
-// const numeros = document.querySelector(".cantProductos");
-// let cantidadProductos;
-
-// function actualizarNumero (){
-
-
-//     numeros.innerHTML="";
-//     traerDeStorage ();
-//     cantidadProductos = carrito.reduce ((acumulado, producto) => {
-//         return acumulado + (producto.cantidad)},0);
-
-// const numeroProductos = document.createElement("div");
-// numeroProductos.innerHTML = 
-// `
-// <button type="button" class="btn position-relative contenedor_logoCarrito">
-//     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart3" viewBox="0 0 16 16">
-//          <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-//     </svg>  
-//     <a class="carritoSubtitulo" href="./index.html#tusCompras">Carrito</a> 
-//     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge rounded-pill colorCirculo">
-//         ${cantidadProductos}
-//     <span class="visually-hidden">unread messages</span>
-//   </span>
-// </button>
-// `
-// numeros.appendChild(numeroProductos);  
-// };
-// actualizarNumero();
-
-
 //TO SEND TO THE HTML THE OPTIONS TO FILTER
-
 
 
 function filtrosEncabezado (){
@@ -417,10 +387,7 @@ function filtrosEncabezado (){
 
 }
 
-
-
-
-
+//to calculate and send to the html the numbers of products in the bag
 function actualizarNumeroCarrito (){
     const logo_carrito = document.querySelector(".logo_carrito");
     
@@ -446,4 +413,14 @@ numeroProductosCarrito.innerHTML =
 logo_carrito.appendChild(numeroProductosCarrito);  
 };
 actualizarNumeroCarrito();
+
+//to go up in the html
+const arriba = document.querySelector (".ir_arriba")
+
+const seccion_arriba = document.createElement ("div")
+seccion_arriba.innerHTML=
+`
+<a class= "formato" href="./index.html#arriba">Ir arriba</a>
+`
+arriba.appendChild(seccion_arriba);
 

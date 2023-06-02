@@ -109,3 +109,15 @@
   margin-right: 10px;
   margin-bottom: 10px;
 }
+
+.resumen_compra{
+  font-size: 18px;
+  font-weight: bold;
+}
+.formato{
+  text-decoration: none;
+  color: black;
+}
+.ir_arriba{
+  margin-top: 10px;
+}
