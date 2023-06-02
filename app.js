@@ -310,6 +310,14 @@ const titulo_principal = document.querySelectorAll(".titulo1")
 titulo_principal[0].innerText = "Productos";
 titulo_principal[1].innerText = "Carrito de compras";
 
+const tusProductos =document.querySelector(".tusProductos")
+const subtituloTusProductos = document.createElement ("div");
+subtituloTusProductos.innerHTML=
+`
+<em>Tus productos seleccionados...</em>.
+`
+tusProductos.appendChild(subtituloTusProductos);
+
 
 
 //BOTON DE VACIAR EL CARRITO
@@ -387,7 +395,9 @@ logo_carrito.appendChild(numeroProductosCarrito);
 };
 actualizarNumeroCarrito();
 
+
 //to go up in the html
+
 const arriba = document.querySelector (".ir_arriba")
 
 const seccion_arriba = document.createElement ("div")
@@ -419,11 +429,29 @@ barraNab.appendChild(seccion_barraNav);
 
 
 //form
+const enviarFormulario = document.querySelector(".colorFormulario");
+
+const seccion_formulario = document.createElement ("div")
+seccion_formulario.innerHTML=
+`
+<form class="container formulario">
+    <h3 >Formulario de Contacto</h3>
+    <label>Nombre y Apellido</label>
+    <input type="text" class="form-control" id="inputName" placeholder="Ingrese su Nombre y Apellido">
+    <label>Correo Electrónico</label>
+    <input type="email" class="form-control" id="inputEmail" placeholder="Ingrese su E-mail">
+    <div class="container-form">
+        <button type="submit" class="btn btn-secondary boton_cartel enviarInfo">Comprar y Enviar Información</button>
+    </div>
+</form>
+`
+enviarFormulario.appendChild(seccion_formulario);
+
 
 const formulario = document.querySelector(".formulario");
 const nombre_formulario = document.querySelector("#inputName");
 const email_formulario = document.querySelector("#inputEmail");
-    
+
 formulario.addEventListener("submit",(e) =>{
         e.preventDefault();
     
